@@ -276,8 +276,10 @@ class CINcode128 extends CINBarcode1D {
             $this->text = $text;
         } else {
             // This loop checks for UnknownText AND raises an exception if a character is not allowed in a table
-            reset($text);
-            while (list($key1, $val1) = each($text)) {     // We take each value
+            $val1 = reset($text);
+
+            do {
+                // We take each value
                 if (!is_array($val1)) {                    // This is not a table
                     if (is_string($val1)) {                // If it's a string, parse as unknown
                         $seq .= $this->getSequence($val1, $currentMode);
@@ -285,7 +287,7 @@ class CINcode128 extends CINBarcode1D {
                     } else {
                         // it's the case of "array(ENCODING, 'text')"
                         // We got ENCODING in $val1, calling 'each' again will get 'text' in $val2
-                        list($key2, $val2) = each($text);
+                        $val2 = next($text);
                         $seq .= $this->{'setParse' . $this->METHOD[$val1]}($val2, $currentMode);
                         $this->text .= $val2;
                     }
@@ -296,7 +298,7 @@ class CINcode128 extends CINBarcode1D {
                     $seq .= $this->{'setParse' . $this->METHOD[$val1[0]]}($value, $currentMode);
                     $this->text .= $value;
                 }
-            }
+            } while ($val1 = next($text));            // We take each value
         }
 
         if ($seq !== '') {

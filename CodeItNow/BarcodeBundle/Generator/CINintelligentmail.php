@@ -502,11 +502,11 @@ class CINintelligentmail extends CINBarcode1D {
      */
     private static function executeStep3($number) {
         $codewords = array();
-        $codewords[9] = (int)bcmod($number, '636');
+        $codewords[9] = $number % 636;
         $number = bcdiv($number, '636', 0);
 
         for ($i = 8; $i >= 0; $i--) {
-            $codewords[$i] = (int)bcmod($number, '1365');
+            $codewords[$i] = $number % 1365;
             $number = bcdiv($number, '1365', 0);
         }
 
@@ -637,7 +637,7 @@ class CINintelligentmail extends CINBarcode1D {
      * @param string
      */
     private static function bcdecuc($dec) {
-        $last = bcmod($dec, 256);
+        $last = (string) $dec % 256;
         $remain = bcdiv(bcsub($dec, $last), 256, 0);
 
         if ($remain == 0) {
