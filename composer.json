@@ -1,5 +1,5 @@
 {
-    "name": "codeitnowin/barcode",
+    "name": "ecommpay/barcode",
     "description": "Barcode & Qr Code generator library by http://www.codeitnow.in. You can use it with Custom PHP application or any PHP Framework such as Laravel, Cakephp, Yii, Codeigneter etc.",
     "keywords": ["barcode", "generator", "symfony", "symfony2", "Laravel", "Cakephp", "QrCode", "Qr", "Code"],
     "homepage": "http://www.codeitnow.in",
@@ -8,10 +8,10 @@
         {"name": "Akhtar Khan", "email": "er.akhtarkhan@gmail.com"}
     ],
     "minimum-stability": "stable",
-    "version" : "3.0.3",
+    "version" : "3.1.0",
     "prefer-stable": true,
     "require": {
-        "php": ">=5.3.2",
+        "php": "~7.3",
 	"ext-gd": "*"
     },
     "autoload": {
